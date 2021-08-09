@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"time"
-
-	"github.com/gorilla/mux"
-
 	"rsc.io/quote/v3"
+	"time"
 )
 
 func main() {
@@ -20,7 +18,7 @@ func main() {
 
 	s := &http.Server{
 		Handler:      r,
-		Addr:         "127.0.0.1:8000",
+		Addr:         "0.0.0.0:8000",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
@@ -37,5 +35,5 @@ func goquote(w http.ResponseWriter, r *http.Request) {
 }
 
 func opttruth(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, quote.GoV3())
+	fmt.Fprintf(w, quote.OptV3())
 }
