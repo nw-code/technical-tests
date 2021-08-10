@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cat <<EOF
+resources:
+- deployment.yaml
+- service.yaml
+images:
+- name: golang-test
+  newName: $DOCKER_HUB_REPO
+  newTag: $IMAGE_TAG
+EOF
