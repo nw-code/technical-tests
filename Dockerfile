@@ -1,6 +1,6 @@
 FROM golang:1.16.7-alpine3.14
 WORKDIR /app
-COPY . .
+COPY src .
 RUN CGO_ENABLED=0 GO111MODULE=on GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o golang-test .
 
 FROM scratch

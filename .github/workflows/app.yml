@@ -1,0 +1,22 @@
+name: app
+on:
+  push:
+    branches:
+    - 'master'
+    paths:
+    - '.github/workflows/app.yml'
+    - 'Dockerfile'
+    - 'src/**'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      DOCKER_HUB_REPO: ${{ secrets.DOCKER_HUB_REPO }}
+      DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+    steps:
+    - uses: actions/checkout@v2
+    - run: make build
+    - run: make push
